@@ -1,0 +1,20 @@
+<div class="content">
+  <nav ngbNav #nav="ngbNav" class="nav-tabs">
+    <ng-container ngbNavItem>
+      <a ngbNavLink>5k Progress</a>
+      <ng-template ngbNavContent>
+        <div>
+          <button (click)="getActivities()">actitvites</button>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
+      <a ngbNavLink>Stats</a>
+      <ng-template ngbNavContent>
+        <div></div>
+      </ng-template>
+    </ng-container>
+  </nav>
+
+  <div [ngbNavOutlet]="nav" class="mt-2 content"></div>
+</div>
