@@ -4,7 +4,7 @@
       <a ngbNavLink>5k Progress</a>
       <ng-template ngbNavContent>
         <div>
-          <button (click)="getActivities()">actitvites</button>
+            <p><ngb-progressbar [value]="this.total/1000">{{this.total/1000}} km</ngb-progressbar></p>
         </div>
       </ng-template>
     </ng-container>

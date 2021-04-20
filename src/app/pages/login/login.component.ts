@@ -21,13 +21,6 @@ export class LoginComponent implements OnInit {
     this.stravaBackendService.callLogin();
   }
 
-  getActivities() {
-    this.stravaBackendService.getActivities().subscribe(data => {
-      console.log(data);
-      this.totalNumber = data.length;
-      this.activities = data;
-    });
-  }
 
   getLogin() {
     this.stravaBackendService.getLogin().subscribe(data => {

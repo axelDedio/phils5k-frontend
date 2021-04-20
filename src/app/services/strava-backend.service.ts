@@ -11,11 +11,11 @@ export class StravaBackendService {
 
   constructor(private http: HttpClient) {
   }
-  getActivities(): Observable<Activity[]> {
-    return this.http.post<Activity[]>('api/getActivities', {});
+  getThisYearsCyclingActivities(): Observable<Activity[]> {
+    return this.http.post<Activity[]>('api/getActivities', {after: 1609459200, per_page: 200 });
   }
 
-  callLogin() {
+  callLogin(): void {
     window.location.href = '/api/auth';
   }
   getLogin(): Observable<any> {
