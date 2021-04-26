@@ -4,7 +4,12 @@
       <a ngbNavLink>5k Progress</a>
       <ng-template ngbNavContent>
         <div>
-            <p><ngb-progressbar [value]="this.total/1000">{{this.total/1000}} km</ngb-progressbar></p>
+          <h2>Jahr 2021</h2>
+          <p><ngb-progressbar [type]="'dark'" [max]="365" [value]="getDayOfYear()">{{today | date: 'EE dd. LLL. yyyy'}}</ngb-progressbar></p>
+        </div>
+        <div>
+          <h2>Gefahrene Kilometer</h2>
+          <p><ngb-progressbar [type]="'success'" [max]="5000" [value]="this.total/1000">{{getKms()}} km</ngb-progressbar></p>
         </div>
       </ng-template>
     </ng-container>

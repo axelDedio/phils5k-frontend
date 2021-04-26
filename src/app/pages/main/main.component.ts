@@ -9,13 +9,12 @@ import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class MainComponent implements OnInit {
   total: number = 0;
+  today: Date = new Date();
   constructor(private stravaBackendService: StravaBackendService,
               public config: NgbProgressbarConfig) {
     config.animated = true;
     config.height = '100px';
     config.striped = true;
-    config.type = 'success';
-    config.max = 5000;
   }
 
   ngOnInit(): void {
@@ -34,5 +33,19 @@ export class MainComponent implements OnInit {
       this.total = Math.round(this.total)
       console.log('total: ', this.total);
     })
+  }
+
+  getDayOfYear() {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const diff = (now.valueOf() - start.valueOf()) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+    const oneDay = 1000 * 60 * 60 * 24;
+    const day = Math.floor(diff / oneDay);
+    console.log('Day of year: ' + day);
+    return day;
+  }
+
+  getKms() {
+    return Math.round(this.total/1000);
   }
 }
