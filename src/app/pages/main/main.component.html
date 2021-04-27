@@ -1,6 +1,12 @@
 <div class="content">
   <nav ngbNav #nav="ngbNav" class="nav-tabs">
     <ng-container ngbNavItem>
+      <a ngbNavLink>Stats</a>
+      <ng-template ngbNavContent>
+        <app-stats-tab></app-stats-tab>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
       <a ngbNavLink>5k Progress</a>
       <ng-template ngbNavContent>
         <div>
@@ -11,12 +17,6 @@
           <h2>Gefahrene Kilometer</h2>
           <p><ngb-progressbar [type]="'success'" [max]="5000" [value]="this.total/1000">{{getKms()}} km</ngb-progressbar></p>
         </div>
-      </ng-template>
-    </ng-container>
-    <ng-container ngbNavItem>
-      <a ngbNavLink>Stats</a>
-      <ng-template ngbNavContent>
-        <div></div>
       </ng-template>
     </ng-container>
   </nav>
