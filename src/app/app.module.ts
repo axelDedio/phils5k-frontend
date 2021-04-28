@@ -7,6 +7,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainComponent } from './pages/main/main.component';
 import { StatsTabComponent } from './components/stats-tab/stats-tab.component';
+import {SliderModule} from 'primeng/slider';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { StatsTabComponent } from './components/stats-tab/stats-tab.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    SliderModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

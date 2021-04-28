@@ -1,3 +1,7 @@
-<h1>Plot</h1>
+<h1>Distanzen</h1>
+<div class="slider">
+	<h5>Bins: {{bin_num}}</h5>
+	<p-slider (onChange)="updatePlot()" [min]="1" [max]="100" [(ngModel)]="bin_num"></p-slider>
+</div>
 <div id="plot">
 </div>
