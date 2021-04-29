@@ -11,11 +11,8 @@ import * as d3 from 'd3';
 export class FivekProgressComponent implements OnInit {
   total: number = 0;
   today: Date = new Date();
-  constructor(private stravaBackendService: StravaBackendService,
-              public config: NgbProgressbarConfig) {
-    config.animated = true;
-    config.height = '100px';
-    config.striped = true;
+  constructor(private stravaBackendService: StravaBackendService) {
+
   }
 
   ngOnInit(): void {
@@ -53,7 +50,7 @@ export class FivekProgressComponent implements OnInit {
 
   drawProgressPlot(){
     console.log('drawing plot');
-    const margin = {top: 10, right: 40, bottom: 30, left: 10};
+    const margin = {top: 10, right: 40, bottom: 30, left: 15};
     const width = 1200 - margin.left - margin.right;
     const height = 100 - margin.top - margin.bottom;
 
@@ -119,7 +116,7 @@ export class FivekProgressComponent implements OnInit {
   drawYearPlot() {
     console.log(new Date("2021-01-01 00:00:00"))
 
-    const margin = {top: 30, right: 40, bottom: 30, left: 10};
+    const margin = {top: 30, right: 40, bottom: 30, left: 15};
     const width = 1200 - margin.left - margin.right;
     const height = 120 - margin.top - margin.bottom;
 
