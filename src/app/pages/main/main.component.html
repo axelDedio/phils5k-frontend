@@ -1,22 +1,21 @@
 <div class="content">
   <nav ngbNav #nav="ngbNav" class="nav-tabs">
     <ng-container ngbNavItem>
-      <a ngbNavLink>Stats</a>
+      <a ngbNavLink>Distanzen</a>
       <ng-template ngbNavContent>
         <app-stats-tab></app-stats-tab>
       </ng-template>
     </ng-container>
     <ng-container ngbNavItem>
+      <a ngbNavLink>Watt</a>
+      <ng-template ngbNavContent>
+        <app-watt-plot></app-watt-plot>
+      </ng-template>
+    </ng-container>
+    <ng-container ngbNavItem>
       <a ngbNavLink>5k Progress</a>
       <ng-template ngbNavContent>
-        <div>
-          <h2>Jahr 2021</h2>
-          <p><ngb-progressbar [type]="'dark'" [max]="365" [value]="getDayOfYear()">{{today | date: 'EE dd. LLL. yyyy'}}</ngb-progressbar></p>
-        </div>
-        <div>
-          <h2>Gefahrene Kilometer</h2>
-          <p><ngb-progressbar [type]="'success'" [max]="5000" [value]="this.total/1000">{{getKms()}} km</ngb-progressbar></p>
-        </div>
+        <app-fivek-progress></app-fivek-progress>
       </ng-template>
     </ng-container>
   </nav>

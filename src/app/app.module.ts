@@ -9,13 +9,17 @@ import { MainComponent } from './pages/main/main.component';
 import { StatsTabComponent } from './components/stats-tab/stats-tab.component';
 import {SliderModule} from 'primeng/slider';
 import {FormsModule} from '@angular/forms';
+import { WattPlotComponent } from './components/watt-plot/watt-plot.component';
+import { FivekProgressComponent } from './components/fivek-progress/fivek-progress.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainComponent,
-    StatsTabComponent
+    StatsTabComponent,
+    WattPlotComponent,
+    FivekProgressComponent
   ],
   imports: [
     BrowserModule,

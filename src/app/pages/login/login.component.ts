@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StravaBackendService } from 'src/app/services/strava-backend.service';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,18 +13,17 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private stravaBackendService: StravaBackendService) { }
+  constructor(private loginService: LoginService ) { }
 
   ngOnInit(): void {
   }
   getToken() {
     console.log('hallo');
-    this.stravaBackendService.callLogin();
+    this.loginService.callLogin();
   }
 
-
   getLogin() {
-    this.stravaBackendService.getLogin().subscribe(data => {
+    this.loginService.getLogin().subscribe(data => {
       console.log(data);
     });
   }

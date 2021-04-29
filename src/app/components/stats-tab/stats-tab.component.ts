@@ -33,11 +33,11 @@ export class StatsTabComponent implements OnInit {
   }
 
   getActivities() {
-    this.stravaBackendService.getThisYearsCyclingActivities().subscribe(data => {
+    this.stravaBackendService.activityData.subscribe(data => {
       this.rides = data.filter( act => act.type === 'Ride')
       this.distances = this.rides.map(act => Math.round(act.distance));
       console.log(this.distances);
-      this.drawPlot();
+      this.updatePlot();
     })
   }
   removePlot(){
@@ -70,6 +70,7 @@ export class StatsTabComponent implements OnInit {
         .attr("height", height + margin.top + margin.bottom)
         // translate this svg element to leave some margin.
         .append("g")
+        .attr('id', 'area')
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // X scale and Axis
@@ -78,7 +79,7 @@ export class StatsTabComponent implements OnInit {
         .range([0, width]);
     const bottomAxis = d3.axisBottom(x).ticks(6).tickFormat(d3.format(".2s"))
 
-    this.plot
+    d3.select('#area')
         .append('g')
         .style("font-size", "16px")
         .attr("transform", "translate(0," + height + ")")
@@ -89,7 +90,7 @@ export class StatsTabComponent implements OnInit {
         .domain([0, max_number + 2])         // This is the min and the max of the data: 0 to 100 if percentages
         .range([height, 0]); // This is the corresponding value I want in Pixel
     this.plot
-        .append('g', 'yaxis')
+        .append('g')
         .style("font-size", "16px")
         .call(d3.axisLeft(y));
 
@@ -99,11 +100,15 @@ export class StatsTabComponent implements OnInit {
         .data(bins)
         .enter()
         .append("rect")
-        .attr("x", 1)
-        .attr("transform", (d: any) =>  { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
         .attr("width", (d: any) => { return x(d.x1) - x(d.x0) -1 ; })
         .attr("height", (d: any) => { return height - y(d.length); })
         .style("fill", "#2196F3")
+        .attr("x", 1)
+        // .attr("transform", (d: any) =>  { return "translate(1," + y(d.length) + ")"; })
+        // .transition()
+        // .duration(1000)
+        .attr("transform", (d: any) =>  { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+
 
 
 
