@@ -68,19 +68,25 @@ export class FivekProgressComponent implements OnInit {
     const x = d3.scaleLinear()
         .domain([0, 5000])         // This is the min and the max of the data: 0 to 100 if percentages
         .range([0, width]);
-    const bottomAxis = d3.axisBottom(x).ticks(6).tickFormat(d3.format(".2s"))
+    const bottomAxis = d3.axisBottom(x)
+        .ticks(6)
+        .tickFormat(d3.format(".2s"))
+        .tickSize(0)
 
     plotArea
         .append('g')
-        .attr('id', 'xAxisProgress')
+        .attr('class', 'xAxisProgress')
         .style("font-size", "16px")
-        .attr("transform", "translate(0," + height + ")")
-        .call(bottomAxis);
+        .attr("transform", "translate(0," + (height + 4) + ")")
+        .call(bottomAxis)
+        .select(".domain").remove()
+
+
 
 // X scale and Axis
     const y = d3.scaleLinear()
-        .domain([0, 10])         // This is the min and the max of the data: 0 to 100 if percentages
-        .range([height, 0]); // This is the corresponding value I want in Pixel
+        .domain([0, 10])
+        .range([height, 0]);
 
     plotArea
         .append('rect')
@@ -141,6 +147,8 @@ export class FivekProgressComponent implements OnInit {
         .range([0, width]);
 
     let xAxis = d3.axisTop(xScale)
+        .ticks(12)
+        .tickSizeOuter(0)
 
 
     plotArea.append("g")
@@ -161,7 +169,8 @@ export class FivekProgressComponent implements OnInit {
         .attr("width", x(1))
         .attr("height", y(0))
         .transition()
-        .duration(3000)
+        .delay(1000)
+        .duration(2000)
         .attr("width", x(this.getDayOfYear()))
 
     plotArea

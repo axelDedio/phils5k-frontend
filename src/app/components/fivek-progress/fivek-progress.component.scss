@@ -1,4 +1,5 @@
-#xAxisProgress, #xAxisYear{
-  fill: none;
-  stroke: none;
+.xAxisProgress .tick{
+  text {
+   margin-top: 4px;
+  }
 }

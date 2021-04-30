@@ -21,7 +21,7 @@ export class StatsTabComponent implements OnInit {
   hist_data = [1,1,1,2,2,2,3,3,3,3,3,3,3,4,4,4,5,5,5]
   rides: Activity[] = [];
   distances: number[] = [];
-  bin_num: number = 2;
+  bin_num: number = 10;
 
   constructor(private stravaBackendService: StravaBackendService,) { }
 
