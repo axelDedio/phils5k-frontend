@@ -13,7 +13,7 @@ export interface Activity {
   id: string;
   external_id: string;
   upload_id: string;
-  start_date: Date;
+  start_date: string;
   start_date_local: Date;
   timezone: string;
   utc_offset: number;
