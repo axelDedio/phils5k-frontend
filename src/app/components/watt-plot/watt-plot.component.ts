@@ -3,6 +3,8 @@ import {StravaBackendService} from '../../services/strava-backend.service';
 import {Activity} from '../../model/Activity';
 import * as d3 from 'd3';
 
+
+
 @Component({
   selector: 'app-watt-plot',
   templateUrl: './watt-plot.component.html',
@@ -138,6 +140,19 @@ export class WattPlotComponent implements OnInit {
     const width = 1000 - margin.left - margin.right;
     const height = 320 - margin.top - margin.bottom;
 
+    const tooltip = d3.select("#scatterPlot")
+        .append("div")
+        .style("position", "absolute")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "1px")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .html("The exact value of<br>the Ground Living area is: ")
+
+
 
     const plotArea = d3.select("#scatterPlot")
         .append("svg")
@@ -177,24 +192,54 @@ export class WattPlotComponent implements OnInit {
         .style("font-size", "16px")
         .call(yAxis);
 
+
+
+    const mouseover = (event: any, d:any) => {
+      tooltip.style("opacity", "1")
+      console.log(d);
+      d3.select(event.srcElement).transition()
+          .duration(1)
+          .attr("r", 6);
+    }
+
+   const mousemove = (event: any, d:any) => {
+      console.log(event)
+      tooltip
+          .style("left", (event.x + 20) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
+          .style("top",  event.y + "px")
+    }
+    //
+    // // A function that change this tooltip when the leaves a point: just need to set opacity to 0 again
+    const mouseleave = function (event:any, d: any){
+      tooltip
+          .transition()
+          .duration(1)
+          .style("opacity", 0)
+      d3.select(event.srcElement).transition()
+          .duration(1)
+          .attr("r", 3);
+    }
+
     plotArea
         .append('g')
         .selectAll("dot")
         .data(this.watt_data)
         .enter()
         .append("circle")
+        .attr("id", "circles")
         .attr("r", 3)
         .style("fill", 'black')
         .attr("cx", 0 )
         .attr("cy", height)
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
         .transition()
         .duration(1000)
         .attr("cx", function (d) { return x(d.date); } )
         .transition()
         .duration(1000)
         .attr("cy", function (d) { return y(d.watt); } )
-
-
 
 
 
